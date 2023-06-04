@@ -23,14 +23,18 @@ int main(int argc, char* argv[])
    /* Open database */
    rc = sqlite3_open("test.db", &db);
    
-   if( rc ) {
-      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+   if( rc ) 
+   
+   {
+      printf("Can't open database \n");
       return(0);
-   } else {
-      fprintf(stdout, "Opened database successfully\n");
+   } 
+   else 
+   {
+      printf("Opened database successfully\n");
    }
 
-   /* Create SQL statement */
+   /* SQL statement */
    sql = "CREATE TABLE COMPANY("  \
       "ID INT PRIMARY KEY     NOT NULL," \
       "NAME           TEXT    NOT NULL," \
@@ -41,10 +45,13 @@ int main(int argc, char* argv[])
    /* Execute SQL statement */
    rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
    
-   if( rc != SQLITE_OK ){
+   if( rc != SQLITE_OK )
+   {
       fprintf(stderr, "SQL error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
-   } else {
+   } 
+   else 
+   {
       fprintf(stdout, "Table created successfully\n");
    }
    sqlite3_close(db);
